@@ -12,8 +12,8 @@ class App extends Component {
 
   // load the map
   componentDidMount(){
-    this.getVenues()
-    this.renderMap()
+    this.getVenues() 
+    // this.renderMap() //move to a callback function after rendering markers
   }
 
   // loads the new script (loadGMapScript)
@@ -40,7 +40,8 @@ class App extends Component {
         // console.log(response.data.response.groups[0].items);
         this.setState({
           venues: response.data.response.groups[0].items,
-        })
+        },
+        this.renderMap());
       })
       .catch(error => {
         console.log("ERROR!! " + error)
@@ -54,7 +55,21 @@ class App extends Component {
       center: {lat: -34.397, lng: 150.644},
       zoom: 8
     });
+
+    //loop over venues and add them to state
+    this.state.venues.map((eachVenue) => {
+      //add markers to map
+      const marker = new window.google.maps.Marker({
+        position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
+        map: map,
+        title: eachVenue.venue.name,
+      });
+
+    })
+    
+
   }
+
 
 
   render() {
