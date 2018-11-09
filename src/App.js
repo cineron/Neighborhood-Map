@@ -49,12 +49,16 @@ class App extends Component {
 
   };
 
+  //create map
   //from https://developers.google.com/maps/documentation/javascript/tutorial
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: -34.397, lng: 150.644},
       zoom: 8
     });
+
+    //add info window
+    const infowindow = new window.google.maps.InfoWindow();
 
     //loop over venues and add them to state
     this.state.venues.map((eachVenue) => {
@@ -63,6 +67,19 @@ class App extends Component {
         position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
         map: map,
         title: eachVenue.venue.name,
+      });
+
+      //content for info window
+      const contentString = `<h3>${eachVenue.venue.name}</h3><p>${eachVenue.venue.location.address}</p>`;
+
+      //connect infowindow to marker
+      //click on a marker
+      marker.addListener('click', function() {
+        //change content
+        infowindow.setContent(contentString);
+        
+        //open an infowindow
+        infowindow.open(map, marker);
       });
 
     })
