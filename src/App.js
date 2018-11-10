@@ -62,6 +62,8 @@ class App extends Component {
       zoom: 15
     });
 
+    this.allMarkers = [];
+
     //add info window
     const infowindow = new window.google.maps.InfoWindow();
 
@@ -74,6 +76,9 @@ class App extends Component {
         title: eachVenue.venue.name,
         animation: window.google.maps.Animation.DROP,
       });
+
+      // Push the marker to the array of markers.
+				this.allMarkers.push(marker);
 
       //content for info window
       const contentString = `<h3>${eachVenue.venue.name}</h3><p>${eachVenue.venue.location.address}</p>`;
@@ -99,6 +104,12 @@ class App extends Component {
 
   };
   //Searching///////
+  // create list of venues
+  clickListItem = (venue) => {
+    const marker = this.markers.filter(m => 
+      m.id === venue.id
+    )[0];
+  }
   // Loop thru the markers and filter for venues that match the query string.
 	filterVenues = (query) => {
 		// Filter venue list per query.
