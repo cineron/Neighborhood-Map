@@ -5,6 +5,7 @@ import './App.css';
 import ErrorBoundary from "./ErrorBoundary";
 import VenueList from "./VenueList.js";
 import axios from "axios";
+import { slide as Menu } from "react-burger-menu";
 
 class App extends Component {
   constructor(props){
@@ -71,6 +72,7 @@ class App extends Component {
         position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
         map: map,
         title: eachVenue.venue.name,
+        animation: window.google.maps.Animation.DROP,
       });
 
       //content for info window
@@ -96,7 +98,6 @@ class App extends Component {
     
 
   };
-
   //Searching///////
   // Loop thru the markers and filter for venues that match the query string.
 	filterVenues = (query) => {
@@ -117,19 +118,22 @@ class App extends Component {
 
 
 
+
   render() {
     return (
       <div className="App">
         <header>
           <h1 className="site-title">Coffee in East Dallas</h1>
         </header>
-        <Menu>
-					<VenueList
-						clickListItem={this.clickListItem}
-						filterVenues={this.filterVenues}
-						filteredVenues={this.state.filteredVenues}
-					/>
-				</Menu>
+        <ErrorBoundary>
+          <Menu>
+            <VenueList
+              clickListItem={this.clickListItem}
+              filterVenues={this.filterVenues}
+              filteredVenues={this.state.filteredVenues}
+            />
+          </Menu>
+        </ErrorBoundary>
         <main>
           <ErrorBoundary>
             <div id="map"></div>
