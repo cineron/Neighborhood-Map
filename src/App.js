@@ -6,12 +6,13 @@ import ErrorBoundary from "./ErrorBoundary";
 import axios from "axios";
 
 class App extends Component {
-
-  //initialize state to hold API data
-  state = {
-    venues: [],
+  constructor(props){
+    super(props);
+    //initialize state to hold API data
+    this.state = {
+      venues: [],
+    };
   }
-
   // load the map
   componentDidMount(){
     this.getVenues() 
@@ -77,6 +78,12 @@ class App extends Component {
       //connect infowindow to marker
       //click on a marker
       marker.addListener('click', function() {
+        //animate marker 
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+					setTimeout(() => {
+						marker.setAnimation(null);
+    				}, 1000);
+        
         //change content
         infowindow.setContent(contentString);
         
@@ -93,11 +100,16 @@ class App extends Component {
 
   render() {
     return (
-      <main>
-        <ErrorBoundary>
-          <div id="map"></div>
-        </ErrorBoundary>
-      </main>
+      <div className="App">
+        <header>
+          <h1 className="site-title">Coffee in East Dallas</h1>
+        </header>
+        <main>
+          <ErrorBoundary>
+            <div id="map"></div>
+          </ErrorBoundary>
+        </main>
+      </div>
     );
   }
 }
