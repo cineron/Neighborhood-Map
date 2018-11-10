@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+//use new React Error Boundary
+import ErrorBoundary from "./ErrorBoundary";
 import axios from "axios";
 
 class App extends Component {
@@ -29,8 +31,8 @@ class App extends Component {
     const parameters = {
       client_id: "DQW0VVBWUKAMMBNUKZS1D4BGR4U02BE2QTNQEMPZJKHI2IFO",
       client_secret: "W0422IG25V4HL4FQMQLUSNESOFFG2RKO3VZFRCX4KSE1JOG5",
-      query: "food",
-      near: "Sydney",
+      query: "coffee",
+      ll: [32.811312,-96.770208],
       v: "20180811"
     };
 
@@ -53,8 +55,8 @@ class App extends Component {
   //from https://developers.google.com/maps/documentation/javascript/tutorial
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
+      center: {lat: 32.811312,  lng: -96.770208},
+      zoom: 15
     });
 
     //add info window
@@ -92,7 +94,9 @@ class App extends Component {
   render() {
     return (
       <main>
-        <div id="map"></div>
+        <ErrorBoundary>
+          <div id="map"></div>
+        </ErrorBoundary>
       </main>
     );
   }
