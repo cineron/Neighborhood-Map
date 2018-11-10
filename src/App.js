@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 //use new React Error Boundary
 import ErrorBoundary from "./ErrorBoundary";
+import VenueList from "./VenueList.js";
 import axios from "axios";
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
   }
   // load the map
   componentDidMount(){
-    this.getVenues() 
+    this.getVenues(); 
     // this.renderMap() //move to a callback function after rendering markers
   }
 
@@ -91,10 +92,28 @@ class App extends Component {
         infowindow.open(map, marker);
       });
 
-    })
+    });
     
 
-  }
+  };
+
+  //Searching///////
+  // Loop thru the markers and filter for venues that match the query string.
+	filterVenues = (query) => {
+		// Filter venue list per query.
+		let f = this.venues.filter(venue =>
+			venue.name.toLowerCase().includes(query.toLowerCase())
+		);
+		this.markers.forEach(marker => {
+			// Toggle marker visibility per query match.
+			marker.name.toLowerCase().includes(query.toLowerCase())
+				? marker.setVisible(true)
+				: marker.setVisible(false);
+		});
+
+		// Filtered venues is the result of f filter, update query input.
+		this.setState({ filteredvenues: f, query });
+	}
 
 
 
@@ -104,6 +123,13 @@ class App extends Component {
         <header>
           <h1 className="site-title">Coffee in East Dallas</h1>
         </header>
+        <Menu>
+					<VenueList
+						clickListItem={this.clickListItem}
+						filterVenues={this.filterVenues}
+						filteredVenues={this.state.filteredVenues}
+					/>
+				</Menu>
         <main>
           <ErrorBoundary>
             <div id="map"></div>
