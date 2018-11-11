@@ -115,7 +115,7 @@ class App extends Component {
         //open an infowindow
         infowindow.open(map, marker);
       });
-      this.setState({ filteredVenues: this.venues});
+      this.setState({ filteredVenues: this.state.venues});
     });
   };
   
@@ -132,9 +132,9 @@ class App extends Component {
     // debugger;
 		// Filter venue list per query.
 		let f = this.venues.filter(venue =>
-			venue.name.toLowerCase().includes(query.toLowerCase())
+			venue.venue.name.toLowerCase().includes(query.toLowerCase())
 		);
-		this.markers.forEach(marker => {
+		this.allMarkers.forEach(marker => {
 			// Toggle marker visibility per query match.
 			marker.name.toLowerCase().includes(query.toLowerCase())
 				? marker.setVisible(true)
