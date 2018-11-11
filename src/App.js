@@ -13,8 +13,11 @@ class App extends Component {
     //initialize state to hold API data
     this.state = {
       venues: [],
+      query: "",
+      filteredVenues: [],
     };
   }
+
   // load the map
   componentDidMount(){
     this.getVenues(); 
@@ -59,6 +62,7 @@ class App extends Component {
 
   };
 
+  
   //create map
   //from https://developers.google.com/maps/documentation/javascript/tutorial
   initMap = () => {
@@ -66,12 +70,13 @@ class App extends Component {
       center: {lat: 32.811312,  lng: -96.770208},
       zoom: 15
     });
-
-    // this.allMarkers = [];
-
+    
+    // create a (Component) property to hold the markers
+    this.allMarkers = [];
+    
     //add info window
     const infowindow = new window.google.maps.InfoWindow();
-
+    
     //loop over venues and add them to state
     console.log(this.state.venues);
     this.state.venues.map((eachVenue) => {
@@ -85,6 +90,10 @@ class App extends Component {
       });
       // console.log(this.state);
       // console.log("marker tilte:"+marker.title);
+      
+      // Push the marker to the array of markers.
+      this.allMarkers.push(marker);
+
 
       //content for info window
       const contentString = `<h3>${eachVenue.venue.name}</h3><p>${eachVenue.venue.location.address}</p>`;
@@ -118,7 +127,7 @@ class App extends Component {
     )[0];
   }
   // Loop thru the markers and filter for venues that match the query string.
-	filterVenues = (query) => {
+  	filterVenues = (query) => {
     // debugger;
 		// Filter venue list per query.
 		let f = this.venues.filter(venue =>
@@ -131,7 +140,7 @@ class App extends Component {
 				: marker.setVisible(false);
 		});
 
-		// Filtered venues is the result of f filter, update query input.
+		// filteredVenues is the result of f filter, update query input.
 		this.setState({ filteredVenues: f, query });
 	}
 
