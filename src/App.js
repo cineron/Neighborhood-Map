@@ -13,7 +13,6 @@ class App extends Component {
     //initialize state to hold API data
     this.state = {
       venues: [],
-      markers: [],
     };
   }
   // load the map
@@ -23,6 +22,7 @@ class App extends Component {
   }
 
   // loads the new script (loadGMapScript)
+  // initMap here is a call to the initMap on line 62-ish
   renderMap = () => {
     loadGMapsScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyB6fUiE5X9kPlFVUyccN9PgVP-gRR-er0c&callback=initMap")
 
@@ -30,6 +30,7 @@ class App extends Component {
     window.initMap = this.initMap
   }
 
+  //method for retrieving info from FourSquare API
   getVenues = () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
@@ -39,11 +40,14 @@ class App extends Component {
       ll: [32.811312,-96.770208],
       v: "20180811"
     };
-
+    //axios is a library for request and responses //
+    // https://github.com/axios/axios //
     axios.get(endPoint + new URLSearchParams(parameters))
       .then(response => {
         // console.log(response);
         // console.log(response.data.response.groups[0].items);
+
+        //add venues from FourSquare to state
         this.setState({
           venues: response.data.response.groups[0].items,
         },
@@ -69,17 +73,18 @@ class App extends Component {
     const infowindow = new window.google.maps.InfoWindow();
 
     //loop over venues and add them to state
+    console.log(this.state.venues);
     this.state.venues.map((eachVenue) => {
-      //add markers to map
+      //add markers to map by creating marker objects
       const marker = new window.google.maps.Marker({
         position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
         map: map,
-        title: eachVenue.venue.name,
+        id: eachVenue.venue.id,
+        name: eachVenue.venue.name,
         animation: window.google.maps.Animation.DROP,
       });
-
-      // Push the marker to the array of markers.
-				// this.allMarkers.push(marker);
+      // console.log(this.state);
+      // console.log("marker tilte:"+marker.title);
 
       //content for info window
       const contentString = `<h3>${eachVenue.venue.name}</h3><p>${eachVenue.venue.location.address}</p>`;
@@ -141,11 +146,7 @@ class App extends Component {
         </header>
         <ErrorBoundary>
           <Menu>
-            <VenueList
-              clickListItem={this.clickListItem}
-              filterVenues={this.filterVenues}
-              filteredVenues={this.state.filteredVenues}
-            />
+            <VenueList {...this.state}/>
           </Menu>
         </ErrorBoundary>
         <main>
