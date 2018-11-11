@@ -14,12 +14,10 @@ class App extends Component {
     this.state = {
       venues: [],
       query: "",
-      filteredVenues: [],
-      filterVenues: [],
-      clickListItem: [],
     };
+    // console.log("clickListItem:" + this.clickListItem())
+    this.vens = [];
   }
-
   // load the map
   componentDidMount(){
     this.getVenues(); 
@@ -49,14 +47,16 @@ class App extends Component {
     // https://github.com/axios/axios //
     axios.get(endPoint + new URLSearchParams(parameters))
       .then(response => {
-        // console.log(response);
-        // console.log(response.data.response.groups[0].items);
+        console.log(response);
+        // console.log("response:" + response.data.response.groups[0].items);
 
         //add venues from FourSquare to state
         this.setState({
           venues: response.data.response.groups[0].items,
         },
         this.renderMap());
+        // this.vens = response.data.response.groups[0].items;
+        // console.log("this.vens:" + this.vens);
       })
       .catch(error => {
         console.log("ERROR!! " + error)
