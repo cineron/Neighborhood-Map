@@ -15,20 +15,19 @@ class VenueList extends Component {
 					aria-label="Filter by Name"
 				/>
 				<ul className="venues-list">
-					{this.props.venues &&
-						this.props.venues.map((venue, index) => (
-							<li className="venue-list-item" key={index}>
-								<button
-									className="venue-list-item-button"
-									key={index}
-									onClick={() => {
-										this.props.clickListItem(venue);
-									}}
-								>
-									{venue.name}
-								</button>
-							</li>
-						))}
+					{this.props.filteredVenues && 
+					this.props.filteredVenues.length > 0 && 
+					this.props.venues.map((venue, index) => (
+						<li className="venue-list-item" key={index}>
+							<button className="venue-list-item-button" 
+							key={index} 
+							onClick={() => {
+								this.props.clickListItem(venue);
+							}}>
+							{venue.name}
+							</button>
+						</li>
+					))}
 				</ul>
 			</React.Fragment>
 		);

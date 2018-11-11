@@ -144,7 +144,7 @@ class App extends Component {
 
 		// filteredVenues is the result of f filter, update query input.
 		this.setState({ filteredVenues: f, query });
-	}
+	};
 
 
 
