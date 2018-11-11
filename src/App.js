@@ -15,6 +15,8 @@ class App extends Component {
       venues: [],
       query: "",
       filteredVenues: [],
+      filterVenues: [],
+      clickListItem: [],
     };
   }
 
@@ -155,7 +157,9 @@ class App extends Component {
         </header>
         <ErrorBoundary>
           <Menu>
-            <VenueList {...this.state}/>
+            <VenueList clickListItem={this.clickListItem}
+						filterVenuess={this.filterVenues}
+						filteredVenues={this.state.filteredVenues}/>
           </Menu>
         </ErrorBoundary>
         <main>
