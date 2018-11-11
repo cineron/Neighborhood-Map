@@ -99,7 +99,7 @@ class App extends Component {
         //open an infowindow
         infowindow.open(map, marker);
       });
-      // this.setState({ filteredVenues: this.venues});
+      this.setState({ filteredVenues: this.venues});
 
     });
     

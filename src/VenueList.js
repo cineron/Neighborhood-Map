@@ -15,13 +15,12 @@ class VenueList extends Component {
 					aria-label="Filter by Name"
 				/>
 				<ul className="venues-list">
-					{this.props.filteredVenues &&
-						this.props.filteredVenues.length > 0 &&
-						this.props.filteredVenues.map((venue, index) => (
-							<li className="venue-list-item" key={venue.id}>
+					{this.props.venues &&
+						this.props.venues.map((venue, index) => (
+							<li className="venue-list-item" key={index}>
 								<button
 									className="venue-list-item-button"
-									key={venue.id}
+									key={index}
 									onClick={() => {
 										this.props.clickListItem(venue);
 									}}
