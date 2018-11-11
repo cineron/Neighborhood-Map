@@ -127,7 +127,7 @@ class App extends Component {
     )[0];
   };
   
-  // Loop thru the markers and filter for venues that match the query string.
+  // Loop over  and filter for the query string.
   	filterVenues = (query) => {
     // debugger;
 		// Filter venue list per query.
