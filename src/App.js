@@ -43,7 +43,7 @@ getVenues = () => {
     const parameters = {
         client_id: 'DQW0VVBWUKAMMBNUKZS1D4BGR4U02BE2QTNQEMPZJKHI2IFO',
         client_secret: 'W0422IG25V4HL4FQMQLUSNESOFFG2RKO3VZFRCX4KSE1JOG5',
-        query: 'coffee',
+        query: 'burgers',
         ll: [32.811312, -96.770208],
         v: '20180811'
     };
@@ -150,7 +150,7 @@ render() {
     return (
         <div className="App">
             <header>
-                <h1 className="site-title">Coffee in East Dallas</h1>
+                <h1 className="site-title">Burgers in East Dallas</h1>
             </header>
             <ErrorBoundary>
                 <Menu>

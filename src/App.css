@@ -48,8 +48,9 @@ html, body {
 .venues-filter {
   width: 100%;
   padding: 0.67em;
-  font-size: 2rem;
+  font-size: 1.1rem;
   font-family: 'Oxygen', sans-serif;
+  background-color: cornsilk;
 }
 
 .venues-list {
