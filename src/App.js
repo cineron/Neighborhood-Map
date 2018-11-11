@@ -116,18 +116,17 @@ class App extends Component {
         infowindow.open(map, marker);
       });
       this.setState({ filteredVenues: this.venues});
-
     });
-    
-
   };
+  
   //Searching///////
   // create list of venues
   clickListItem = (venue) => {
     const marker = this.markers.filter(m => 
       m.id === venue.id
     )[0];
-  }
+  };
+  
   // Loop thru the markers and filter for venues that match the query string.
   	filterVenues = (query) => {
     // debugger;
@@ -158,7 +157,7 @@ class App extends Component {
         <ErrorBoundary>
           <Menu>
             <VenueList clickListItem={this.clickListItem}
-						filterVenuess={this.filterVenues}
+						filterVenues={this.filterVenues}
 						filteredVenues={this.state.filteredVenues}/>
           </Menu>
         </ErrorBoundary>

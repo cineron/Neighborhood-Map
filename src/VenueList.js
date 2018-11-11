@@ -17,7 +17,7 @@ class VenueList extends Component {
 				<ul className="venues-list">
 					{this.props.filteredVenues && 
 					this.props.filteredVenues.length > 0 && 
-					this.props.venues.map((venue, index) => (
+					this.props.filteredVenues.map((venue, index) => (
 						<li className="venue-list-item" key={index}>
 							<button className="venue-list-item-button" 
 							key={index} 
