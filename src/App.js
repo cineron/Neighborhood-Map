@@ -13,6 +13,7 @@ class App extends Component {
     //initialize state to hold API data
     this.state = {
       venues: [],
+      markers: [],
     };
   }
   // load the map
@@ -62,7 +63,7 @@ class App extends Component {
       zoom: 15
     });
 
-    this.allMarkers = [];
+    // this.allMarkers = [];
 
     //add info window
     const infowindow = new window.google.maps.InfoWindow();
@@ -78,7 +79,7 @@ class App extends Component {
       });
 
       // Push the marker to the array of markers.
-				this.allMarkers.push(marker);
+				// this.allMarkers.push(marker);
 
       //content for info window
       const contentString = `<h3>${eachVenue.venue.name}</h3><p>${eachVenue.venue.location.address}</p>`;
@@ -98,6 +99,7 @@ class App extends Component {
         //open an infowindow
         infowindow.open(map, marker);
       });
+      // this.setState({ filteredVenues: this.venues});
 
     });
     
@@ -124,7 +126,7 @@ class App extends Component {
 		});
 
 		// Filtered venues is the result of f filter, update query input.
-		this.setState({ filteredvenues: f, query });
+		this.setState({ filteredVenues: f, query });
 	}
 
 
