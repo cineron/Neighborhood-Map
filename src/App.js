@@ -114,6 +114,7 @@ class App extends Component {
   }
   // Loop thru the markers and filter for venues that match the query string.
 	filterVenues = (query) => {
+    // debugger;
 		// Filter venue list per query.
 		let f = this.venues.filter(venue =>
 			venue.name.toLowerCase().includes(query.toLowerCase())

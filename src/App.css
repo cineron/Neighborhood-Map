@@ -7,16 +7,16 @@
   height: 40vmin;
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(12px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -41,32 +41,33 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-size: 12px;
 }
 
 /* Filter input text box */
-.places-filter {
+.venues-filter {
   width: 100%;
   padding: 0.67em;
-  font-size: 1rem;
+  font-size: 2rem;
   font-family: 'Oxygen', sans-serif;
 }
 
-.places-list {
+.venues-list {
   padding: 0;
 }
 
-.place-list-item {
+.venue-list-item {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.place-list-item-button {
+.venue-list-item-button {
   padding: 0.67em;
   margin-top: 1em;
   border-radius: 8px;
   cursor: pointer;
-  background: #d7dabc;
+  background: #bdbdbd;
   font-size: 1rem;
   font-family: 'Oxygen', sans-serif;
 }
@@ -86,7 +87,7 @@ html, body {
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #f7b247;
+  background: #000000;
 }
 
 /* Position and sizing of clickable cross button */
@@ -97,19 +98,19 @@ html, body {
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #f7b247;
+  background: #ffffff;
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background: #443219;
+  background: #233372;
   padding: 2.5em 1em 0;
   font-size: 1.15em;
 }
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: #b8b7ad;
+  color: #cdcdcd;
 }
 
 /* Individual item */
