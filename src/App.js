@@ -128,17 +128,16 @@ class App extends Component {
   };
   
   // Loop over  and filter for the query string.
-  	filterVenues = (query) => {
+  filterVenues = (query) => {
     // debugger;
 		// Filter venue list per query.
-		let f = this.venues.filter(venue =>
+		let f = this.state.venues.filter(venue =>
 			venue.venue.name.toLowerCase().includes(query.toLowerCase())
 		);
 		this.allMarkers.forEach(marker => {
 			// Toggle marker visibility per query match.
 			marker.name.toLowerCase().includes(query.toLowerCase())
-				? marker.setVisible(true)
-				: marker.setVisible(false);
+				? marker.setVisible(true) : marker.setVisible(false);
 		});
 
 		// filteredVenues is the result of f filter, update query input.
