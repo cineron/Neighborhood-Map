@@ -10,7 +10,7 @@ class VenueList extends Component {
 				<input
 					type="search"
 					placeholder="Filter by Name"
-					value={this.props.query}
+					value={this.props.lookUp}
 					onChange={event => {
 						this.props.siftSpots(event.target.value);
 					}}

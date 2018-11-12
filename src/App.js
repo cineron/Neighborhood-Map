@@ -13,7 +13,7 @@ constructor(props) {
     //initialize state to hold API data
 this.state = {
         venues: [],
-        query: '',
+        lookUp: '',
         allMarkers: [],
         sortedSpots: []
     };
@@ -132,23 +132,23 @@ clickedOnSpot = venue => {
     window.google.maps.event.trigger(marker, 'click');
 };
 
-// Loop thru the markers and filter for venues that match the query string. https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s
+// Loop thru the markers and filter for venues that match the lookUp string. https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s
 // logic from 
-siftSpots = query => {
+siftSpots = lookUp => {
     // debugger;
-    // Filter venue list per query.
-    let searchedVenues = this.state.allMarkers.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+    // Filter venue list per lookUp.
+    let searchedVenues = this.state.allMarkers.filter(venue => venue.name.toLowerCase().includes(lookUp.toLowerCase()));
 
     this.state.allMarkers.forEach(marker => {
-        // Toggle marker visibility per query match.
+        // Toggle marker visibility per lookUp match.
         // logic from https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s
-        marker.name.toLowerCase().includes(query.toLowerCase())
+        marker.name.toLowerCase().includes(lookUp.toLowerCase())
             ? marker.setVisible(true)
             : marker.setVisible(false);
     });
 
-    // sortedSpots is the result of searchedVenues filter, update query input.
-    this.setState({ sortedSpots: searchedVenues, query });
+    // sortedSpots is the result of searchedVenues filter, update lookUp input.
+    this.setState({ sortedSpots: searchedVenues, lookUp });
 };
 
 render() {
