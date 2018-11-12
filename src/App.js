@@ -105,7 +105,7 @@ initMap = () => {
         //connect infowindow to marker
         //click on a marker
         marker.addListener('click', function() {
-            //animate marker
+            //animate marker code from Google Maps Docs!
             marker.setAnimation(window.google.maps.Animation.BOUNCE);
             setTimeout(() => {
                 marker.setAnimation(null);
