@@ -15,12 +15,14 @@ this.state = {
         venues: [],
         query: '',
         allMarkers: [],
-        filteredVenues: []
+        sortedSpots: []
     };
-    // console.log("clickListItem:" + this.clickListItem())
+    // console.log("clickedOnSpot:" + this.clickedOnSpot())
     this.vens = [];
 }
 // load the map
+// Idea to load Google Maps this way from Elharony Youtube video
+// https://www.youtube.com/watch?v=W5LhLZqj76s
 componentDidMount() {
     this.getVenues();
     // this.renderMap() //move to a callback function after rendering markers
@@ -118,32 +120,35 @@ initMap = () => {
         });
         mapMarkers.push(marker);
     });
-    this.setState({ filteredVenues: mapMarkers, allMarkers: mapMarkers });
+    this.setState({ sortedSpots: mapMarkers, allMarkers: mapMarkers });
     console.log(this.state.allMarkers);
 };
 
 //Searching///////
 // create list of venues
-clickListItem = venue => {
+// trigger from https://developers.google.com/maps/documentation/javascript/reference/event#event.trigger
+clickedOnSpot = venue => {
     const marker = this.state.allMarkers.find(m => m.id === venue.id);
     window.google.maps.event.trigger(marker, 'click');
 };
 
-// Loop thru the markers and filter for venues that match the query string.
-filterVenues = query => {
+// Loop thru the markers and filter for venues that match the query string. https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s
+// logic from 
+siftSpots = query => {
     // debugger;
     // Filter venue list per query.
-    let f = this.state.allMarkers.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+    let searchedVenues = this.state.allMarkers.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
 
     this.state.allMarkers.forEach(marker => {
         // Toggle marker visibility per query match.
+        // logic from https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s
         marker.name.toLowerCase().includes(query.toLowerCase())
             ? marker.setVisible(true)
             : marker.setVisible(false);
     });
 
-    // filteredVenues is the result of f filter, update query input.
-    this.setState({ filteredVenues: f, query });
+    // sortedSpots is the result of searchedVenues filter, update query input.
+    this.setState({ sortedSpots: searchedVenues, query });
 };
 
 render() {
@@ -155,16 +160,16 @@ render() {
             <ErrorBoundary>
                 <Menu>
                     <VenueList
-                        clickListItem={this.clickListItem}
+                        clickedOnSpot={this.clickedOnSpot}
                         allMarkers={this.state.allMarkers}
-                        filterVenues={this.filterVenues}
-                        filteredVenues={this.state.filteredVenues}
+                        siftSpots={this.siftSpots}
+                        sortedSpots={this.state.sortedSpots}
                     />
                 </Menu>
             </ErrorBoundary>
             <main>
                 <ErrorBoundary>
-                    <div id="map" />
+                    <div id="map"role="application" aria-label="map" /> />
                 </ErrorBoundary>
             </main>
         </div>
@@ -175,7 +180,7 @@ render() {
 /*
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 
-Follow along from Elharony Youtube video
+Idea for placing Google maps logic here from Elharony Youtube video
 https://www.youtube.com/watch?v=W5LhLZqj76s
 */
 

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+// code used from React docs
+// https://reactjs.org/docs/react-api.html#reactfragment
+// matching logic from https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s
 class VenueList extends Component {
 	render() {
 		return (
@@ -9,20 +12,20 @@ class VenueList extends Component {
 					placeholder="Filter by Name"
 					value={this.props.query}
 					onChange={event => {
-						this.props.filterVenues(event.target.value);
+						this.props.siftSpots(event.target.value);
 					}}
 					className="venues-filter"
 					aria-label="Filter by Name"
 				/>
 				<ul className="venues-list">
-					{this.props.filteredVenues && 
-					this.props.filteredVenues.length > 0 && 
-					this.props.filteredVenues.map((venue, index) => (
+					{this.props.sortedSpots && 
+					this.props.sortedSpots.length > 0 && 
+					this.props.sortedSpots.map((venue, index) => (
 						<li className="venue-list-item" key={index}>
 							<button className="venue-list-item-button" 
 							key={index} 
 							onClick={() => {
-								this.props.clickListItem(venue);
+								this.props.clickedOnSpot(venue);
 							}}>
 							{venue.name}
 							</button>
