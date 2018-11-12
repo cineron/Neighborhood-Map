@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 // code used from React docs
 // https://reactjs.org/docs/react-api.html#reactfragment
-// matching logic from https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s
 class VenueList extends Component {
 	render() {
 		return (
@@ -17,6 +16,7 @@ class VenueList extends Component {
 					className="venues-filter"
 					aria-label="Filter by Name"
 				/>
+				{/* matching logic from https://www.youtube.com/watch?v=5J6fs_BlVC0&t=1939s */}
 				<ul className="venues-list">
 					{this.props.sortedSpots && 
 					this.props.sortedSpots.length > 0 && 
