@@ -1,12 +1,12 @@
-# Udacity Neighborhood Map Project
+# Neighborhood Map
 
-This project is a web application that uses the Google Maps API to load points of interest in a particular neighborhood.
+This web application uses the Google Maps and FourSquare APIs to load points of interest in a particular neighborhood. Created as a project for Udacity's Front-End Nanodegree program, [view it live here](https://udacity-neighborhood-map-cineron.netlify.com/ "Coffee in East Dallas"). Otherwise, it can be installed locally by following the instructions that follow.
 
 ---
 
 ## Table of Contents
 
-- [Frontend Nanodegree Feedreader](#frontend-nanodegree-feedreader)
+- [Neighborhood Map](#Neighborhood Map)
     - [Table of Contents](#table-of-contents)
     - [Getting Started](#getting-started)
     - [How to Use These Files](#how-to-use-these-files)
@@ -14,7 +14,7 @@ This project is a web application that uses the Google Maps API to load points o
         - [Instructions](#instructions)
     - [Dependencies](#dependencies)
     - [Acknowledgements](#acknowledgements)
-    - [TODO](#todo)
+    <!-- - [TODO](#todo) -->
 
 ## Getting Started
 
