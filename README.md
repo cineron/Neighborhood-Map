@@ -45,7 +45,7 @@ To insure all dependencies are installed, make sure to follow the [Getting Start
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 The default `create-react-app` **Service Worker** is used in this app, and only works when running a production build.
 
-See source code for additional acknowledgements. Many others' ideas were used in creating this game.
+See source code for additional acknowledgements. Many others' ideas were used in creating this app.
 
 ### Contributing
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
