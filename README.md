@@ -1,6 +1,6 @@
 # Neighborhood Map
 
-This web application uses the Google Maps and FourSquare APIs to load points of interest in a particular neighborhood. Created as a project for Udacity's Front-End Nanodegree program, [view it live here](https://udacity-neighborhood-map-cineron.netlify.com/ "Coffee in East Dallas"). Otherwise, it can be installed locally by following the instructions that follow.
+This web application uses the Google Maps and FourSquare APIs to load points of interest in a particular neighborhood. Created as a project for Udacity's Front-End Nanodegree program, [view it live here](https://neighborhood-map-cineron.netlify.com/ "Coffee in East Dallas"). Otherwise, it can be installed locally by following the instructions that follow.
 
 ---
 
